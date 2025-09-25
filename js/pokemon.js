@@ -12,7 +12,7 @@ async function pokemon(parametro) {
     root.innerHTML = `
     
     <section class="c-detalle>
-    <image src="https://raw.githubusercontent.com/PokeAPI"
+    <image src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites">Imagen</image>
     <p>${data.name}</p>
     <p>${data.id}</p>
     <p>Altura: ${data.height / 10} = Peso: ${data.weight / 10} kg</p>
