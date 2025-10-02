@@ -25,6 +25,5 @@ async function pokemon(parametro) {
     `;
 }
 
-pokemon(5);
-pokemon(55);
+
 
