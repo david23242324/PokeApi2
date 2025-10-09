@@ -1,11 +1,11 @@
 function generarLista(arraypokemones) {
     let listaHTML = "";
     for (let i = 0; i < arraypokemones.length; i++) {
-        let id = i + 1;
+        let id = arraypokemones[i].url.split("/")[6];
         listaHTML += `
         <div class="c-lista-pokemon poke-${id}" onclick="Detalle('${id}')">
             <p>#${id}</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png" width="auto" height="1000" loading="lazy" alt="${arraypokemones[i].name}">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png" width="auto" height="60" loading="lazy" alt="${arraypokemones[i].name}">
             <p>${arraypokemones[i].name}</p>
         </div>`;
     }
@@ -13,16 +13,28 @@ function generarLista(arraypokemones) {
     return listaHTML;
 }
 
-
-generarLista(pokemones)
-
-
-function buscadorfuncion(xds){
-    console.log(xds);
+function buscadorfuncion(sza){
+    if(sza.length >= 3){
+        const filtrados = [];
+        for (let i = 0; i < pokemones.length; i++) {
+            const nombre = pokemones[i].name.toLowerCase();
+            if (nombre.includes(sza.toLowerCase())) {
+                filtrados.push(pokemones[i]);
+            }
+        }
+        let listaHTML = generarLista(filtrados)
+        document.getElementById("la-lista").innerHTML = listaHTML;
+    }else{
+        let listaHTML = generarLista(pokemones)
+        document.getElementById("la-lista").innerHTML = listaHTML;
+    }
 }
 
+function Home(){
 
-function home(){
+        var root = document.getElementById("root");
+    root.innerHTML = ""
+    
     //buscador
     const buscador = document.createElement("input");
     buscador.classList.add("c-buscador");
@@ -55,13 +67,11 @@ function home(){
         contenedorFiltro.appendChild(btn);
     }
 
-    // contenedor
+
     const listaHTML = generarLista(pokemones);
     var contenedorPokemones = document.createElement("section");
     contenedorPokemones.id = "la-lista";
     contenedorPokemones.innerHTML = listaHTML;
-
-
 
     document.getElementById("root").appendChild(buscador);
     document.getElementById("root").appendChild(contenedorFiltro);
