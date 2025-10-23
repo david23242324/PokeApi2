@@ -8,3 +8,12 @@ button {
     justify-content: right;
     margin-right: 2px;
 }
+
+
+
+/* detail */
+
+.detalle header {
+    display: flex;
+    justify-content: center;
+}
